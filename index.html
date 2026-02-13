@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffdde1;
+            background: linear-gradient(to right, #ff99ac, #ffdde1);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .gif-container img {
+            width: 150px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+
+        #successMessage {
+            display: none;
+        }
+
+        .celebrate-img {
+            width: 200px;
+            display: none;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div id="askSection">
+            <div class="gif-container">
+                <img src="y.jpeg" alt="Cute Cat">
+            </div>
+            <h1>Will you be my Valentine? 🌹</h1>
+            <div class="buttons">
+                <button class="btn" id="yesBtn" onclick="accepted()">Yes!</button>
+                <button class="btn" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+            </div>
+        </div>
+
+        <div id="successMessage">
+            <img src="beb.jpeg" class="celebrate-img" id="catCelebrate" style="display:block;">
+            <h1 style="color: #d63384;">Yay! I knew it! ❤️</h1>
+            <p>I love you! See you on Feb 14th!</p>
+        </div>
+    </div>
+
+    <script>
+        let yesButtonSize = 1.2;
+        let clicks = 0;
+
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            // Pindahkan tombol No secara acak
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+
+            // Besarkan tombol Yes setiap kali tombol No dicoba diklik
+            yesButtonSize += 0.3;
+            yesBtn.style.fontSize = yesButtonSize + 'rem';
+            yesBtn.style.padding = (12 * yesButtonSize/1.2) + 'px ' + (25 * yesButtonSize/1.2) + 'px';
+        }
+
+        function accepted() {
+            document.getElementById('askSection').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Efek tambahan: Ganti warna background
+            document.body.style.background = "linear-gradient(to right, #ff4b1f, #ff9068)";
+            
+            // Munculkan alert manis
+            setTimeout(() => {
+                alert("Love is in the air! 💖");
+            }, 500);
+        }
+    </script>
+</body>
+</html>
